@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<project name="templates" default="">
+	
+	<scriptdef name="substring" language="javascript">
+	     <attribute name="text" />
+	     <attribute name="start" />
+	     <attribute name="end" />
+	     <attribute name="property" />
+	     <![CDATA[
+	       var text = attributes.get("text");
+	       var start = attributes.get("start");
+	       var end = attributes.get("end") || text.length();
+	       project.setProperty(attributes.get("property"), text.substring(start, end));
+	     ]]>
+	</scriptdef>
+	
+	<macrodef name="import-deps">
+	    <attribute name="library"/>
+	    <attribute name="lib"/>
+		<attribute name="classes"/>
+	    <attribute name="workspace" default="../.."/>
+	    <sequential>
+	    	<echo message="Importing @{library} libs "/>
+			<copy todir="@{lib}" filtering="false" flatten="true">
+				<fileset dir="@{workspace}/@{library}/dev/lib" includes="**/*.jar" excludes="**/ext/**"/>
+	      	</copy>
+	   		<copy todir="@{lib}/ext" filtering="false" flatten="true">
+	            <fileset dir="@{workspace}/@{library}/dev/lib" includes="**/ext/**/*.jar"/>
+			</copy>
+	    	<conf workspace="@{workspace}" library="@{library}" classes="@{classes}"/>
+    	</sequential>
+	</macrodef>
+	
+	<macrodef name="conf">
+	    <attribute name="workspace" default="../.."/>
+	    <attribute name="library" default="${ant.project.name}"/>
+	    <attribute name="project" default="${ant.project.name}"/>
+    	<attribute name="classes" default="@{workspace}/@{project}/target/@{project}/classes"/>
+	
+		<sequential>
+			<echo message="Importing (filtering) @{library} configuration files"/>
+			<copy todir="@{classes}" filtering="true" overwrite="true">
+				<filterset refid="filters"/>
+				<fileset dir="@{workspace}/@{library}/dev/src/conf" includes="**/*.*" />
+			</copy>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="build">
+	    <attribute name="library"/>
+	    <attribute name="lib"/>
+	    <attribute name="src" default="java"/>
+	    <attribute name="suffix" default=""/>
+	    <attribute name="workspace" default="../.."/>
+    	<attribute name="classes" default="@{workspace}/@{project}/target/@{library}/classes"/>
+	    <attribute name="project" default="${ant.project.name}"/>
+	    <attribute name="javaversion" default="1.5"/>
+	    <attribute name="message" default="Building @{library} @{src}"/>
+	    <sequential>
+	    	<echo message="@{message}"/>
+			<!-- make the deployment directory -->
+	        <mkdir dir="@{classes}"/>
+			<!-- compile the library -->
+	        <javac destdir="@{classes}"
+	        	source="@{javaversion}"
+	            includes="**/*.java"
+	            excludes=""
+	            debug="on"
+				nowarn="true"
+	            deprecation="off"
+	        	includeantruntime="false"
+	            optimize="true">
+				<!-- setup classpath -->
+			    <classpath>
+		            <fileset dir="@{lib}" includes="**/*.jar"/>
+		    	</classpath>
+				<!-- setup sourcepath -->
+	        	<src>
+	    			<pathelement location="@{workspace}/@{library}/dev/src/@{src}"/>
+	        	</src>
+	        </javac>
+			<!-- move over source tree files -->
+    		<copy todir="@{classes}" filtering="false">
+    			<fileset dir="@{workspace}/@{library}/dev/src/@{src}" excludes="**/*.java" includes="**/*.*"/>
+    		</copy>
+	    </sequential>
+	</macrodef>
+	
+	<macrodef name="build-library">
+	    <attribute name="library"/>
+	    <attribute name="lib"/>
+	    <attribute name="src" default="java"/>
+	    <attribute name="suffix" default=""/>
+	    <attribute name="workspace" default="../.."/>
+	    <attribute name="outputdir" default="@{lib}"/>
+	    <attribute name="project" default="${ant.project.name}"/>
+    	<attribute name="classes" default="@{workspace}/@{project}/target/@{library}/classes/@{src}"/>
+	    <attribute name="javaversion" default="1.5"/>
+	    <sequential>
+			<build library="@{library}" 
+				lib="@{lib}" 
+				src="@{src}" 
+				workspace="@{workspace}" 
+				suffix="@{suffix}" 
+				project="@{project}"
+				classes="@{classes}"
+				javaversion="@{javaversion}"
+	    		message="Building @{library} @{src} as @{library}@{suffix}.jar "/>
+    		<!-- jar up the library -->
+	        <jar jarfile="@{outputdir}/@{library}@{suffix}.jar">
+	            <fileset dir="@{classes}" includes="**/*.*"/>
+	        </jar>
+	        <zip zipfile="@{outputdir}/@{library}@{suffix}-src.zip">
+	            <fileset dir="@{workspace}/@{library}/dev/src/@{src}" includes="**/*.*"/>
+	        </zip>
+	    </sequential>
+	</macrodef>
+	
+	<macrodef name="import-project-library">
+	    <attribute name="library"/>
+	    <attribute name="lib"/>
+	    <attribute name="suffix" default=""/>
+		<attribute name="classes"/>
+	    <attribute name="workspace" default="../.."/>
+	    <sequential>
+    		<import-deps library="@{library}" lib="@{lib}" workspace="@{workspace}" classes="@{classes}"/>
+			<build-library src="java" library="@{library}" lib="@{lib}" suffix="@{suffix}"/>
+			<build-library src="junit" library="@{library}" lib="@{lib}" outputdir="@{lib}/ext" suffix="@{suffix}-junit"/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="unit-test">
+    	<attribute name="classes"/>
+    	<attribute name="lib"/>
+	    <attribute name="reportdir"/>
+	    <attribute name="xmldir"/>
+		<attribute name="testpattern"  default="*Test.java" />
+		<attribute name="suitepattern" default="*TestSuite.java" />
+	    <attribute name="workspace" default="../.."/>
+	    <attribute name="project" default="${ant.project.name}"/>
+		<sequential>
+			<!-- setup classpath -->
+		    <path id="unit-test-classpath"> 
+				<pathelement path="@{classes}"/>
+	            <fileset dir="@{lib}" includes="**/*.jar"/>
+	    	</path>
+			<junit printsummary="yes" 
+				fork="yes" 
+				haltonfailure="false" 
+				haltonerror="false"
+				failureProperty="test.failure">
+				
+				<classpath refid="unit-test-classpath"/>
+				<jvmarg value="-ea"/>
+
+	        	<formatter type="xml"/>
+
+	            <batchtest todir="@{xmldir}">
+	                <fileset dir="@{workspace}/@{project}/dev/src/junit">
+	                    <include name="**/@{testpattern}"/>
+	                    <include name="**/@{suitepattern}"/>
+	                    <exclude name="**/Base*Test.java"/>
+	                    <exclude name="**/AllTests.java"/>
+	                </fileset>
+	            </batchtest>
+		    </junit>
+	    
+	    	<junitreport todir="@{reportdir}" >
+	            <fileset dir="@{xmldir}" includes="TEST-*.xml"/>
+	            <report format="frames" todir="@{reportdir}"/>
+	        </junitreport>
+
+		</sequential>
+	</macrodef>
+
+</project>
+
+

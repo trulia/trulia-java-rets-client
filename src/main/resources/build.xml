@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project name="rets-client" default="refresh" basedir=".">
+
+	<!--**********************************************************************
+                            SOME MACRO DEFINTIONS
+    ***********************************************************************-->
+	<import file="templates.xml"/>
+
+	<!--**********************************************************************
+                            PROPERTIES FILE DEFINTION
+    ***********************************************************************-->
+	<property name="build.environment" value="default"/>
+	<property file="${build.environment}.properties"/>
+	<property file="default.properties"/>
+
+	<!--**********************************************************************
+                            IMMUTABLE PROPERTIES DEFINTIONS
+    ***********************************************************************-->
+	<property name="dist" 				value="${basedir}/../dist"/>
+	<property name="dist.sandbox" 		value="${dist}/${ant.project.name}-sandbox"/>
+	<property name="dist.lib" 			value="${dist.sandbox}/lib"/>
+	<!-- junit property stuff -->
+	<property name="dist.classes" 		value="${dist.sandbox}/classes"/>
+	<property name="dist.javadoc"    	value="${dist}/javadoc"/>
+	<property name="dist.junit"	 		value="${dist}/junit"/>
+	<property name="dist.junit.xml" 	value="${dist.junit}/xml"/>
+
+	<!-- git version info -->
+	<property prefix="git" file="../../.git/HEAD"/>
+	<basename file="${git.ref}" suffix="true" property="git.branch"/>
+	<loadfile srcfile="../../.git/refs/heads/${git.branch}" property="git.version"/>
+	<substring text="${git.version}" start="0" end="7" property="git.version.abbrev" />
+
+	<!-- dist file version stamp -->
+	<tstamp>
+		<format property="dist.version.date" pattern="yyyyMMdd-HHmm" locale="en"/>
+	</tstamp>
+
+
+	<!--**********************************************************************
+                          BASE TASKS FOR PROJECT REFRESH
+    ***********************************************************************-->
+	<fail unless="build.environment"/>
+	<fail unless="dist"/>
+	<fail unless="dist.classes"/>
+	<fail unless="dist.lib" />
+
+
+	<filterset id="filters">
+		<filtersfile file="default.properties" />
+		<filtersfile file="${build.environment}.properties" />
+	</filterset>
+
+	<target name="clean" description="Removes the output directory">
+		<delete dir="${dist}"/>
+	</target>
+
+	<target name="init">
+		<mkdir dir="${dist.lib}/ext"/>
+	</target>
+
+	<target name="deps"/>
+
+	<target name="refresh" depends="init,deps">
+		<import-deps library="${ant.project.name}" lib="${dist.lib}" classes="${dist.classes}"/>
+		<build src="java" lib="${dist.lib}" library="${ant.project.name}" classes="${dist.classes}"/>
+		<build src="junit" lib="${dist.lib}" library="${ant.project.name}" classes="${dist.classes}"/>
+	</target>
+
+	<target name="dist" depends="clean,deps">
+		<!--<import-project-library library="${ant.project.name}" lib="${dist.lib}" classes="${dist.classes}" suffix=".${dist.version.date}.${git.version.abbrev}"/>-->
+		<!-- remove dates -->
+		<import-project-library library="${ant.project.name}" lib="${dist.lib}" classes="${dist.classes}" suffix=""/>
+	</target>
+
+	<!--**********************************************************************
+                          BASE TASKS FOR PROJECT TESTING
+    ***********************************************************************-->
+	<fail unless="dist.javadoc"/>
+	<fail unless="dist.junit"/>
+	<fail unless="dist.junit.xml"/>
+
+	<target name="unit-test-init" depends="refresh">
+		<mkdir dir="${dist.junit.xml}"/>
+		<mkdir dir="${dist.junit}"/>
+		<copy todir="${dist.classes}" filtering="false" overwrite="true">
+			<fileset dir="src/junit" includes="**/*.properties,**/*.xml"/>
+		</copy>
+	</target>
+
+	<target name="unit-test" depends="unit-test-init" description="Run Tests">
+		<unit-test classes="${dist.classes}" lib="${dist.lib}" reportdir="${dist.junit}" xmldir="${dist.junit.xml}"
+			testpattern="*Test.java" suitepattern="*TestSuite.java" />
+	</target>
+
+	<target name="unit-test-ext" depends="unit-test-init" description="Run Tests (External)">
+		<unit-test classes="${dist.classes}" lib="${dist.lib}" reportdir="${dist.junit}" xmldir="${dist.junit.xml}"
+			testpattern="*TestExt.java" suitepattern="*TestSuiteExt.java" />
+	</target>
+
+	<target name="build-and-test" depends="refresh,unit-test" />
+
+
+</project>

@@ -1,0 +1,7 @@
+<RETS ReplyCode="0" ReplyText="Operation Successful">
+<METADATA-UPDATE_TYPE Resource="ActiveAgent" Class="ACTAGT" Update="Change_ACTAGT" Version="1.00.000" Date="Sat, 20 Mar 2002 12:03:38 GMT">
+<COLUMNS>	SystemName	Sequence	Attributes	Default	ValidationExpressionID	UpdateHelpID	ValidationLookupName	ValidationExternalName	</COLUMNS>
+<DATA>	AGENT_ID	1	1	0					</DATA>
+<DATA>	OFFICE_ID	2	2	0					</DATA>
+</METADATA-UPDATE_TYPE>
+</RETS>

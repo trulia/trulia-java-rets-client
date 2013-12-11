@@ -1,0 +1,17 @@
+<RETS ReplyCode="0" ReplyText="Operation Successful">
+<RETS-RESPONSE>
+broker = B123, BO987
+membername = Joe T. Schmoe
+metadataversion = 1.00.000
+minmetadataversion = 1.00.000
+user = A123,5678,1,A123
+login = http://rets.test:6103/login
+logout = http://rets.test:6103/logout
+search = http://rets.test:6103/search
+getmetadata = http://rets.test:6103/getMetadata
+changepassword = http://rets.test:6103/changePassword
+getobject = http://rets.test:6103/getObjectEx
+action = http://rets.test:6103/get
+balance = 44.21
+timeoutseconds = 60
+</RETS-RESPONSE></RETS>

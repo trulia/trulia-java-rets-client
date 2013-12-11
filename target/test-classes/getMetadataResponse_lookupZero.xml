@@ -1,0 +1,18 @@
+<RETS ReplyCode="0" ReplyText="Operation Successful">
+<METADATA-LOOKUP Resource="Property" Version="1.00.000" Date="Sat, 20 Mar 2002 12:03:38 GMT">
+<COLUMNS>	LookupName	VisibleName	Version	Date	</COLUMNS>
+<DATA>	E_SCHOOL	Elementary School District	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+<DATA>	H_SCHOOL	High School District	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+<DATA>	AR	Area	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+<DATA>	IFT	Interior Features	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+<DATA>	VEW	View	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+<DATA>	LISTING_TYPE	Listing Type	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+<DATA>	LISTING_STATUS	Listing Status	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+<DATA>	M_SCHOOL	Middle School District	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+<DATA>	EFT	Exerior Features	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+</METADATA-LOOKUP>
+<METADATA-LOOKUP Resource="Agent" Version="1.00.000" Date="Sat, 20 Mar 2002 12:03:38 GMT">
+<COLUMNS>	LookupName	VisibleName	Version	Date	</COLUMNS>
+<DATA>	DESIGNATIONS	DESIGNATIONS	1.00.000	Sat, 20 Mar 2002 12:03:38 GMT	</DATA>
+</METADATA-LOOKUP>
+</RETS>

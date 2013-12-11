@@ -1,0 +1,6 @@
+<RETS ReplyCode="0" ReplyText="Operation Successful">
+<METADATA-SYSTEM Version="01.00.001" Date="Tue, 27 May 2003 12:00:00 CDT">
+<SYSTEM SystemID="CRT_RETS" SystemDescription="Center for REALTOR Technology"/>
+<COMMENTS>The reference implementation of a RETS Server</COMMENTS>
+</METADATA-SYSTEM>
+</RETS>

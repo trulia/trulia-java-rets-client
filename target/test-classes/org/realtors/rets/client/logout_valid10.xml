@@ -1,0 +1,5 @@
+<RETS ReplyCode="0" ReplyText="Operation Successful">
+ConnectTime = 1000
+Billing = $20.00
+SignOffMessage = Good Bye
+</RETS>

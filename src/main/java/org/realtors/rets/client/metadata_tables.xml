@@ -1,0 +1,41 @@
+<table name="SYSTEM">
+  <table name="RESOURCE" id-column="ResourceID">
+
+    <table name="CLASS" id-column="ClassName" path-attributes="Resource">
+      <table name="TABLE" id-column="SystemName"
+             path-attributes="Resource,Class"/>
+
+      <table name="UPDATE" id-column="UpdateName"
+             path-attributes="Resource,Class">
+        <table name="UPDATE_TYPE" id-column="SystemName"
+               path-attributes="Resource,Class,Update"/>
+      </table>
+    </table>
+
+    <table name="UPDATE_HELP" id-column="UpdateHelpID"
+           path-attributes="Resource"/>
+    <table name="OBJECT" id-column="ObjectType" path-attributes="Resource"/>
+    <table name="SEARCH_HELP" id-column="SearchHelpID"
+           path-attributes="Resource"/>
+    <table name="EDITMASK" id-column="EditMaskId" path-attributes="Resource"/>
+    <table name="LOOKUP" id-column="LookupName" path-attributes="Resource">
+      <table name="LOOKUP_TYPE" id-column="LongValue"
+           path-attributes="Resource,Lookup"/>
+    </table>
+
+    <table name="VALIDATION_LOOKUP" id-column="ValidationLookupName"
+           path-attributes="Resource">
+      <table name="VALIDATION_LOOKUP_TYPE" id-column="ValidText"
+             path-attributes="Resource,ValidationLookup"/>
+    </table>
+
+    <table name="VALIDATION_EXTERNAL" id-column="ValidationExternalName"
+           path-attributes="Resource">
+      <table name="VALIDATION_EXTERNAL_TYPE" id-column="SearchField"
+             path-attributes="Resource,ValidationExternal"/>
+    </table>
+    <table name="VALIDATION_EXPRESSION" id-column="ValidationExpressionID"
+           path-attributes="Resource"/>
+  </table>
+  <table name="FOREIGNKEYS" id-column="ForeignKeyID"/>
+</table>

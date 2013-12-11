@@ -1,0 +1,36 @@
+#surefire
+#Wed Mar 13 16:05:43 PDT 2013
+testClassesDirectory=/Users/vangulo/git/dozer/rets_client/target/test-classes
+classPathUrl.4=/Users/vangulo/.m2/repository/log4j/log4j/1.2.9/log4j-1.2.9.jar
+classPathUrl.3=/Users/vangulo/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar
+classPathUrl.2=/Users/vangulo/.m2/repository/jdom/jdom/1.0/jdom-1.0.jar
+useManifestOnlyJar=true
+classPathUrl.1=/Users/vangulo/git/dozer/rets_client/target/classes
+reportsDirectory=/Users/vangulo/git/dozer/rets_client/target/surefire-reports
+classPathUrl.0=/Users/vangulo/git/dozer/rets_client/target/test-classes
+dirscanner.0=directoryScannerOptions
+providerConfiguration=org.apache.maven.surefire.junit.JUnit3Provider
+testSuiteDefinitionTestSourceDirectory=/Users/vangulo/git/dozer/rets_client/src/test/java
+surefireClassPathUrl.1=/Users/vangulo/.m2/repository/org/apache/maven/surefire/surefire-api/2.7.1/surefire-api-2.7.1.jar
+surefireClassPathUrl.0=/Users/vangulo/.m2/repository/org/apache/maven/surefire/surefire-junit3/2.7.1/surefire-junit3-2.7.1.jar
+report.2=org.apache.maven.surefire.report.XMLReporter
+useSystemClassLoader=true
+report.1=org.apache.maven.surefire.report.BriefFileReporter
+report.0=org.apache.maven.surefire.report.ForkingConsoleReporter
+excludes0=**/*$*
+isTrimStackTrace=true
+dirscanner.0.params=/Users/vangulo/git/dozer/rets_client/target/test-classes|[**/Test*.java, **/*Test.java, **/*TestCase.java]|[**/*$*]
+includes2=**/*TestCase.java
+enableAssertions=true
+includes1=**/*Test.java
+failIfNoTests=false
+includes0=**/Test*.java
+dirscanner.0.types=java.io.File|java.util.ArrayList|java.util.ArrayList
+classPathUrl.11=/Users/vangulo/.m2/repository/org/apache/httpcomponents/httpcore/4.1/httpcore-4.1.jar
+classPathUrl.10=/Users/vangulo/.m2/repository/org/apache/httpcomponents/httpclient/4.1.1/httpclient-4.1.1.jar
+classPathUrl.9=/Users/vangulo/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar
+classPathUrl.8=/Users/vangulo/.m2/repository/com/google/guava/guava/11.0.1/guava-11.0.1.jar
+classPathUrl.7=/Users/vangulo/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar
+childDelegation=false
+classPathUrl.6=/Users/vangulo/.m2/repository/commons-codec/commons-codec/1.3/commons-codec-1.3.jar
+classPathUrl.5=/Users/vangulo/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar
