@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-    <groupId>java-rets-client</groupId>
+    <groupId>trulia-java-rets-client</groupId>
     <version>1.0-SNAPSHOT</version>
-    <artifactId>java-rets-client</artifactId>
+    <artifactId>trulia-java-rets-client</artifactId>
    
   <packaging>jar</packaging>
-  <name>Java Rets Client</name>
+  <name>Trulia Java Rets Client</name>
   <url>http://maven.apache.org</url>
   
   <profiles>
@@ -97,7 +97,7 @@
               <goal>single</goal>
             </goals>
             <configuration>
-              <finalName>java-rets-client-${env}</finalName>
+              <finalName>trulia-java-rets-client-${env}</finalName>
               <descriptorRefs>
                 <descriptorRef>jar-with-dependencies</descriptorRef>
               </descriptorRefs>
