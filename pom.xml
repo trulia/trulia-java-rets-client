@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>rets-client</artifactId>
+  <artifactId>java-rets-client</artifactId>
   <packaging>jar</packaging>
-  <name>Rets Client</name>
+  <name>Java Rets Client</name>
   <url>http://maven.apache.org</url>
   
   <profiles>
@@ -94,7 +94,7 @@
               <goal>single</goal>
             </goals>
             <configuration>
-              <finalName>rets-client-${env}</finalName>
+              <finalName>java-rets-client-${env}</finalName>
               <descriptorRefs>
                 <descriptorRef>jar-with-dependencies</descriptorRef>
               </descriptorRefs>
