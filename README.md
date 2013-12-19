@@ -69,4 +69,6 @@ Simple example of a search:
 				}
 			}
 		}
-	
+
+## License
+[Dozer RETS Client is licensed under the MIT License](https://github.com/vangulo-trulia/dozer-rets-client/blob/master/LICENSE)
