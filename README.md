@@ -1,7 +1,7 @@
 java-rets-client
 =================
 
-The Dozer RETS Client is java library used to access data on RETS compliant servers.
+The Java RETS Client is java library used to access data on RETS compliant servers.
 
 Simple example of a search:
 
@@ -71,4 +71,4 @@ Simple example of a search:
 		}
 
 ## License
-[Dozer RETS Client is licensed under the MIT License](https://github.com/vangulo-trulia/dozer-rets-client/blob/master/LICENSE)
+[Java RETS Client is licensed under the MIT License](https://github.com/vangulo-trulia/java-rets-client/blob/master/LICENSE)
