@@ -1,7 +1,10 @@
 java-rets-client
 =================
 
-The Java RETS Client is java library used to access data on RETS compliant servers.
+The Java RETS Client is a library used to access data on RETS compliant servers.
+This is a fork of the [jrets](https://github.com/jpfielding/jrets) master branch, which it self is a fork of the [CART RETS client](http://cart.sourceforge.net/)
+
+
 
 Simple example of a search:
 
