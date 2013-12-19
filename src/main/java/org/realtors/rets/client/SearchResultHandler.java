@@ -57,7 +57,6 @@ public class SearchResultHandler implements ContentHandler, ErrorHandler{
 		this.invalidReplyCodeHandler = invalidReplyCodeHandler;
 	}
 
-	@Override
 	public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
 		String name = localName;
 		if (localName.equals("")) {
@@ -127,14 +126,12 @@ public class SearchResultHandler implements ContentHandler, ErrorHandler{
 
 	}
 
-	@Override
 	public void characters(char[] ch, int start, int length) {
 		if (this.currentEntry != null) {
 			this.currentEntry.append(ch, start, length);
 		}
 	}
 
-	@Override
 	public void ignorableWhitespace(char[] ch, int start, int length) {
 		// we ignore NOZINK!
 		characters(ch, start, length);
@@ -168,7 +165,6 @@ public class SearchResultHandler implements ContentHandler, ErrorHandler{
 		return (String[]) list.toArray(new String[0]);
 	}
 
-	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXParseException {
 		String name = localName;
 		if (name.equals("")) {
@@ -189,53 +185,43 @@ public class SearchResultHandler implements ContentHandler, ErrorHandler{
 		}
 	}
 
-	@Override
 	public void startDocument() {
 		LOG.info("Start document");
 	}
 
-	@Override
 	public void endDocument() {
 		LOG.info("Document ended");
 		this.collector.setComplete();
 	}
 
-	@Override
 	public void startPrefixMapping(String prefix, String uri) throws SAXException {
 		// LOG.debug("prefix mapping: " + prefix);
 	}
 
-	@Override
 	public void endPrefixMapping(String prefix) throws SAXException {
 		// LOG.debug("prefix mapping: " + prefix);
 	}
 
-	@Override
 	public void processingInstruction(String target, String data) throws SAXException {
 		throw new SAXException("processing instructions not supported: " + "target=" + target + ", data=" + data);
 	}
 
-	@Override
 	public void skippedEntity(String name) throws SAXException {
 		throw new SAXException("skipped entities not supported: name=" + name);
 	}
 
-	@Override
 	public void setDocumentLocator(Locator locator) {
 		this.locator = locator;
 	}
 
-	@Override
 	public void error(SAXParseException e) throws SAXException {
 		throw e;
 	}
 
-	@Override
 	public void fatalError(SAXParseException e) throws SAXException {
 		throw e;
 	}
 
-	@Override
 	public void warning(SAXParseException e) {
 		LOG.warn("an error occured while parsing.  Attempting to continue", e);
 	}

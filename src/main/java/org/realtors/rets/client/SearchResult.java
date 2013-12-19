@@ -13,15 +13,11 @@ public interface SearchResult extends SearchResultInfo {
 
 	public Iterator iterator();
 
-	@Override
 	public String[] getColumns();
 
-	@Override
 	public boolean isMaxrows();
 
-	@Override
 	public int getCount();
 
-	@Override
 	public boolean isComplete();
 }

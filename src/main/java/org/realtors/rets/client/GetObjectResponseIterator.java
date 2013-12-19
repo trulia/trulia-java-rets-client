@@ -25,19 +25,19 @@ public class GetObjectResponseIterator<T extends SingleObjectResponse> implement
 			return new GetObjectResponseIterator(response, boundary, streamBufferSize);
 
 		return new GetObjectIterator<T>() {
-			@Override
+			
 			public void close() throws IOException{
 				response.getInputStream().close();
 			}
-			@Override
+			
 			public boolean hasNext() {
 				return false;
 			}
-			@Override
+			
 			public T next() {
 				throw new NoSuchElementException();
 			}
-			@Override
+			
 			public void remove() {
 				throw new UnsupportedOperationException("");
 			}
@@ -51,7 +51,7 @@ public class GetObjectResponseIterator<T extends SingleObjectResponse> implement
 		this.multipartStream = new PushbackInputStream(input, BS.length() + this.boundary.length() + EOL.length());
 	}
 
-	@Override
+	
 	public boolean hasNext() {
 		if (this.hasNext != null) 
 			return this.hasNext.booleanValue();
@@ -64,7 +64,7 @@ public class GetObjectResponseIterator<T extends SingleObjectResponse> implement
 		}
 	}
 
-	@Override
+	
 	public T next() {
 		if (!this.hasNext())
 			throw new NoSuchElementException();
@@ -77,12 +77,12 @@ public class GetObjectResponseIterator<T extends SingleObjectResponse> implement
 		}
 	}
 
-	@Override
+	
 	public void remove() {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
+	
 	public void close() throws IOException {
 		this.multipartStream.close();
 	}

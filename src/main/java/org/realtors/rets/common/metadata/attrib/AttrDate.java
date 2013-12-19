@@ -33,7 +33,6 @@ public class AttrDate implements AttrType<String> {
 	
 	// need date attribute to be flexible since different MLS's have 
 	// different formats for dates 
-	@Override
 	public String parse(String value, boolean strict) throws MetaParseException {
 		return value;
 //		Date d;
@@ -54,14 +53,12 @@ public class AttrDate implements AttrType<String> {
 //		return d;
 	}
 
-	@Override
 	public String render(String value) {
 		return value;
 		//Date date = value;
 		//return this.df.format(date);
 	}
 
-	@Override
 	public Class<String> getType() {
 		return String.class;
 	}

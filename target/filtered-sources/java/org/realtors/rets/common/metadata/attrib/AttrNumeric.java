@@ -11,7 +11,6 @@ import org.realtors.rets.common.metadata.AttrType;
 import org.realtors.rets.common.metadata.MetaParseException;
 
 public class AttrNumeric implements AttrType<Integer> {
-	@Override
 	public Integer parse(String value, boolean strict) throws MetaParseException {
 		try {
 			return new Integer(value);
@@ -22,12 +21,10 @@ public class AttrNumeric implements AttrType<Integer> {
 		}
 	}
 
-	@Override
 	public String render(Integer value) {
 		return value.toString();
 	}
 
-	@Override
 	public Class<Integer> getType() {
 		return Integer.class;
 	}

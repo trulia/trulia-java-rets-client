@@ -11,7 +11,6 @@ import org.realtors.rets.common.metadata.AttrType;
 import org.realtors.rets.common.metadata.MetaParseException;
 
 public class AttrBoolean implements AttrType<Boolean> {
-	@Override
 	public Boolean parse(String value, boolean strict) throws MetaParseException {
 		if (value.equals("1")) {
 			return Boolean.TRUE;
@@ -43,14 +42,12 @@ public class AttrBoolean implements AttrType<Boolean> {
 		return false;
 	}
 
-	@Override
 	public String render(Boolean value) {
 		if( value.booleanValue() ) return "1";
 
 		return "0";
 	}
 
-	@Override
 	public Class<Boolean> getType() {
 		return Boolean.class;
 	}

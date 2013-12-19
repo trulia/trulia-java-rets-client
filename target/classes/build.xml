@@ -17,7 +17,7 @@
 	<!--**********************************************************************
                             IMMUTABLE PROPERTIES DEFINTIONS
     ***********************************************************************-->
-	<property name="dist" 				value="/Users/vangulo/Documents/workspaceNEWNEW/dozer-rets-client/../dist"/>
+	<property name="dist" 				value="/Users/vangulo/git/java-rets-client/../dist"/>
 	<property name="dist.sandbox" 		value="${dist}/${ant.project.name}-sandbox"/>
 	<property name="dist.lib" 			value="${dist.sandbox}/lib"/>
 	<!-- junit property stuff -->

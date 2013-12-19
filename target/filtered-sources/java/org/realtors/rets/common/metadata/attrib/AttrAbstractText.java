@@ -19,7 +19,7 @@ public abstract class AttrAbstractText implements AttrType<String> {
 		this.max = max;
 	}
 
-	@Override
+	
 	public String parse(String value, boolean strict) throws MetaParseException {
 		if( !strict )
 			return value;
@@ -34,12 +34,12 @@ public abstract class AttrAbstractText implements AttrType<String> {
 		return value;
 	}
 
-	@Override
+	
 	public Class<String> getType() {
 		return String.class;
 	}
 
-	@Override
+	
 	public String render(String value) {
 		return value;
 	}

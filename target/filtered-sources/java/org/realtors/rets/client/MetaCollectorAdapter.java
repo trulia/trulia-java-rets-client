@@ -9,12 +9,12 @@ import org.realtors.rets.common.metadata.MetadataType;
 
 public abstract class MetaCollectorAdapter implements MetaCollector {
 
-	@Override
+	
 	public MetaObject[] getMetadata(MetadataType type, String path) {
 		return getSome(type, path, "0");
 	}
 
-	@Override
+	
 	public MetaObject[] getMetadataRecursive(MetadataType type, String path) {
 		return getSome(type, path, "*");
 	}

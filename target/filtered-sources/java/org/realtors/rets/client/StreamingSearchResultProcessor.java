@@ -73,12 +73,10 @@ public class StreamingSearchResultProcessor implements SearchResultProcessor {
 		return this.mInvalidReplyCodeHandler;
 	}
 
-	@Override
 	public SearchResultSet parse(InputStream reader) {
 		return parse(new InputSource(reader));
 	}
 
-	@Override
 	public SearchResultSet parse(Reader reader) {
 		return parse(new InputSource(reader));
 	}
@@ -154,7 +152,6 @@ class StreamingSearchResult implements SearchResultSet, SearchResultCollector {
 
 	// ------------ Producer Methods
 
-	@Override
 	public synchronized boolean addRow(String[] row) {
 		if (row.length > this.columns.length) {
 			throw new IllegalArgumentException(String.format("Invalid number of result columns: got %s, expected %s",row.length, this.columns.length));
@@ -192,27 +189,23 @@ class StreamingSearchResult implements SearchResultSet, SearchResultCollector {
 		return true;
 	}
 
-	@Override
 	public synchronized void setComplete() {
 		pushState(COMPLETE);
 		notifyAll();
 	}
 
-	@Override
 	public synchronized void setCount(int count) {
 		this.count = count;
 		pushState(PREPROCESS);
 		notifyAll();
 	}
 
-	@Override
 	public synchronized void setColumns(String[] columns) {
 		this.columns = columns;
 		pushState(BUFFER_AVAILABLE);
 		notifyAll();
 	}
 
-	@Override
 	public synchronized void setMaxrows() {
 		this.mMaxrows = true;
 		pushState(COMPLETE);
@@ -227,7 +220,6 @@ class StreamingSearchResult implements SearchResultSet, SearchResultCollector {
 
 	// ----------- Consumer Methods
 
-	@Override
 	public synchronized boolean hasNext() throws RetsException {
 		// wait for someone to add data to the queue
 		// or flag complete
@@ -241,7 +233,6 @@ class StreamingSearchResult implements SearchResultSet, SearchResultCollector {
 		return !this.buffer.isEmpty();
 	}
 
-	@Override
 	public synchronized String[] next() throws RetsException {
 		checkException();
 		String[] row = this.buffer.removeFirst();
@@ -251,7 +242,6 @@ class StreamingSearchResult implements SearchResultSet, SearchResultCollector {
 		return row;
 	}
 
-	@Override
 	public synchronized int getCount() throws RetsException {
 		while (checkException() && state() < BUFFER_AVAILABLE) {
 			_wait();
@@ -259,7 +249,6 @@ class StreamingSearchResult implements SearchResultSet, SearchResultCollector {
 		return this.count;
 	}
 
-	@Override
 	public synchronized String[] getColumns() throws RetsException {
 		while (checkException() && state() < BUFFER_AVAILABLE) {
 			_wait();
@@ -267,7 +256,6 @@ class StreamingSearchResult implements SearchResultSet, SearchResultCollector {
 		return this.columns;
 	}
 
-	@Override
 	public synchronized boolean isMaxrows() throws RetsException {
 		checkException();
 
@@ -286,7 +274,6 @@ class StreamingSearchResult implements SearchResultSet, SearchResultCollector {
 		return this;
 	}
 
-	@Override
 	public synchronized boolean isComplete() throws RetsException {
 		checkException();
 		return state() >= COMPLETE;

@@ -16,7 +16,7 @@ import org.realtors.rets.common.metadata.MetaParseException;
  * to an integer such as major * 10,000,000 + minor * 100,000 + release.
  */
 public class AttrVersion implements AttrType<Integer> {
-	@Override
+	
 	public Integer parse(String value, boolean strict) throws MetaParseException {
 		String[] parts = StringUtils.split(value, ".");
 		int major, minor, release;
@@ -42,7 +42,7 @@ public class AttrVersion implements AttrType<Integer> {
 		return "0";
 	}
 
-	@Override
+	
 	public String render(Integer value) {
 		int ver = value.intValue();
 		int release = ver % 100000;
@@ -59,7 +59,7 @@ public class AttrVersion implements AttrType<Integer> {
 		return major + "." + minstr + "." + relstr;
 	}
 
-	@Override
+	
 	public Class<Integer> getType() {
 		return Integer.class;
 	}

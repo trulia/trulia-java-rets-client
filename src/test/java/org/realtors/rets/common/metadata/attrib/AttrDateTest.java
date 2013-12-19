@@ -1,11 +1,5 @@
 package org.realtors.rets.common.metadata.attrib;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-
-import org.realtors.rets.common.metadata.AttrType;
-
 public class AttrDateTest extends AttrTypeTest {
 	public void testAttrDate() throws Exception {
 		/*
