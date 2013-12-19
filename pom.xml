@@ -1,12 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.trulia.dm</groupId>
-    <version>1.0-SNAPSHOT</version>
-    <artifactId>rets</artifactId>
-    <relativePath>../pom.xml</relativePath>
-  </parent>
   <artifactId>rets-client</artifactId>
   <packaging>jar</packaging>
   <name>Rets Client</name>
@@ -22,27 +16,6 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-  	</profile>
-    <profile>
-      <id>dev</id>
-      <properties>
-        <env>dev</env>
-        <client.local.directory>/data/dozer/dozerapp_jrets</client.local.directory>
-      </properties>
-  	</profile>
-    <profile>
-      <id>stage</id>
-      <properties>
-        <env>stage</env>
-        <client.local.directory>/data/dozer/dozerapp_jrets</client.local.directory>
-      </properties>
-  	</profile>
-    <profile>
-      <id>prod</id>
-      <properties>
-        <env>prod</env>
-        <client.local.directory>/data/dozer/dozerapp_jrets</client.local.directory>
-      </properties>
   	</profile>
   </profiles>
   
