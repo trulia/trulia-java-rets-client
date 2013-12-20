@@ -72,7 +72,7 @@ Simple example of a search:
 			}
 		}
 
-Simple example of a GetObject Example:
+Simple example making a GetObjectRequest:
 
 	public static void main(String[] args) throws MalformedURLException {
 
@@ -167,6 +167,66 @@ Simple example of a GetObject Example:
 			}
 		}
 	}
+
+Example of Geting Metadata:
+
+public class RetsGetMetadataExample {
+
+	public static void main(String[] args) throws MalformedURLException {
+
+		//Create a RetsHttpClient (other constructors provide configuration i.e. timeout, gzip capability)
+		RetsHttpClient httpClient = new CommonsHttpClient();
+		RetsVersion retsVersion = RetsVersion.RETS_1_7_2;
+		String loginUrl = "http://theurloftheretsserver.com";
+
+		//Create a RetesSession with RetsHttpClient
+		RetsSession session = new RetsSession(loginUrl, httpClient, retsVersion);    
+
+		String username = "username";
+		String password = "password";
+
+		//Set method as GET or POST
+		session.setMethod("POST");
+		try {
+			//Login
+			session.login(username, password);
+		} catch (RetsException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			MSystem system = session.getMetadata().getSystem();
+			System.out.println(
+					"SYSTEM: " + system.getSystemID() + 
+					" - " + system.getSystemDescription());
+
+			for(MResource resource: system.getMResources()) {
+
+				System.out.println(
+						"    RESOURCE: " + resource.getResourceID());
+
+				for(MClass classification: resource.getMClasses()) {
+					System.out.println(
+							"        CLASS: " + classification.getClassName() +
+							" - " + classification.getDescription());
+				}
+			}
+		}
+		catch (RetsException e) {
+			e.printStackTrace();
+		} 	
+		finally {
+			if(session != null) { 
+				try {
+					session.logout(); 
+				} 
+				catch(RetsException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}	
+}
 
 ## License
 [Trulia Java RETS Client is licensed under the MIT License](https://github.com/trulia/trulia-java-rets-client/blob/master/LICENSE)
