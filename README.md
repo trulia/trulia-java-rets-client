@@ -170,7 +170,7 @@ Simple example making a GetObjectRequest:
 
 Example of Geting Metadata:
 
-public class RetsGetMetadataExample {
+
 
 	public static void main(String[] args) throws MalformedURLException {
 
@@ -226,7 +226,7 @@ public class RetsGetMetadataExample {
 			}
 		}
 	}	
-}
+
 
 ## License
 [Trulia Java RETS Client is licensed under the MIT License](https://github.com/trulia/trulia-java-rets-client/blob/master/LICENSE)
