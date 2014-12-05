@@ -95,7 +95,11 @@ public class CommonsHttpClientResponse implements RetsHttpResponse {
 				
 				public void close() throws IOException {
 					// connection release _AFTER_ the input stream has been read
-					Closeables.closeQuietly(in);
+					try {
+						Closeables.close(in, true);
+					} catch (IOException e) {
+						// ignore
+					}
 				}
 			};
 		} catch (IOException e) {
